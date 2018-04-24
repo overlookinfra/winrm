@@ -24,6 +24,8 @@ type Endpoint struct {
 	CACert []byte // cert auth to intdetify the server cert
 	Key    []byte // public key for client auth connections
 	Cert   []byte // cert for client auth connections
+	//Connect Timeout for HTTP request
+	ConnectTimeout time.Duration
 	// duration timeout for the underling tcp conn(http/https base protocol)
 	// if the time exceeds the connection is cloded/timeouts
 	Timeout time.Duration
@@ -41,7 +43,7 @@ func (ep *Endpoint) url() string {
 }
 
 // NewEndpoint returns new pointer to struct Endpoint, with a default 60s response header timeout
-func NewEndpoint(host string, port int, https bool, insecure bool, Cacert, cert, key []byte, timeout time.Duration) *Endpoint {
+func NewEndpoint(host string, port int, https bool, insecure bool, Cacert, cert, key []byte, timeout time.Duration, connectTimeout time.Duration) *Endpoint {
 	endpoint := &Endpoint{
 		Host:     host,
 		Port:     port,
@@ -57,6 +59,13 @@ func NewEndpoint(host string, port int, https bool, insecure bool, Cacert, cert,
 	} else {
 		// assign default 60sec timeout
 		endpoint.Timeout = 60 * time.Second
+	}
+	// if the timeout was set
+	if connectTimeout != 0 {
+		endpoint.ConnectTimeout = connectTimeout
+	} else {
+		// assign default 60sec timeout
+		endpoint.ConnectTimeout = 30 * time.Second
 	}
 
 	return endpoint

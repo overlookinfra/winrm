@@ -17,11 +17,21 @@ func (s *WinRMSuite) TestEndpointUrlHttps(c *C) {
 }
 
 func (s *WinRMSuite) TestEndpointWithDefaultTimeout(c *C) {
-	endpoint := NewEndpoint("test", 5585, false, false, nil, nil, nil, 0)
+	endpoint := NewEndpoint("test", 5585, false, false, nil, nil, nil, 0,0)
 	c.Assert(endpoint.Timeout, Equals, 60*time.Second)
 }
 
 func (s *WinRMSuite) TestEndpointWithTimeout(c *C) {
-	endpoint := NewEndpoint("test", 5585, false, false, nil, nil, nil, 120*time.Second)
+	endpoint := NewEndpoint("test", 5585, false, false, nil, nil, nil, 120*time.Second,0)
 	c.Assert(endpoint.Timeout, Equals, 120*time.Second)
+}
+
+func (s *WinRMSuite) TestEndpointWithDefaultConnectTimeout(c *C) {
+	endpoint := NewEndpoint("test", 5585, false, false, nil, nil, nil, 0,0)
+	c.Assert(endpoint.ConnectTimeout, Equals, 30*time.Second)
+}
+
+func (s *WinRMSuite) TestEndpointWithConnectTimeout(c *C) {
+	endpoint := NewEndpoint("test", 5585, false, false, nil, nil, nil, 120*time.Second,120*time.Second)
+	c.Assert(endpoint.ConnectTimeout, Equals, 120*time.Second)
 }

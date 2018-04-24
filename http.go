@@ -49,7 +49,7 @@ func (c *clientRequest) Transport(endpoint *Endpoint) error {
 			ServerName:         endpoint.TLSServerName,
 		},
 		Dial: (&net.Dialer{
-			Timeout:   30 * time.Second,
+			Timeout:   endpoint.ConnectTimeout,
 			KeepAlive: 30 * time.Second,
 		}).Dial,
 		ResponseHeaderTimeout: endpoint.Timeout,

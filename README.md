@@ -75,7 +75,7 @@ import (
 	"os"
 )
 
-endpoint := winrm.NewEndpoint(host, 5986, false, false, nil, nil, nil, 0)
+endpoint := winrm.NewEndpoint(host, 5986, false, false, nil, nil, nil, 0, 0)
 client, err := winrm.NewClient(endpoint, "Administrator", "secret")
 if err != nil {
 	panic(err)
@@ -92,7 +92,7 @@ import (
   "os"
 )
 
-endpoint := winrm.NewEndpoint("localhost", 5985, false, false, nil, nil, nil, 0)
+endpoint := winrm.NewEndpoint("localhost", 5985, false, false, nil, nil, nil, 0, 0)
 client, err := winrm.NewClient(endpoint,"Administrator", "secret")
 if err != nil {
 	panic(err)
@@ -115,7 +115,7 @@ import (
   "os"
 )
 
-endpoint := winrm.NewEndpoint("localhost", 5985, false, false, nil, nil, nil, 0)
+endpoint := winrm.NewEndpoint("localhost", 5985, false, false, nil, nil, nil, 0, 0)
 
 params := DefaultParameters
 params.TransportDecorator = func() Transporter { return &ClientNTLM{} }
@@ -145,7 +145,7 @@ import (
 )
 
 stdin := bytes.NewBufferString("ipconfig /all")
-endpoint := winrm.NewEndpoint("localhost", 5985, false, false,nil, nil, nil, 0)
+endpoint := winrm.NewEndpoint("localhost", 5985, false, false,nil, nil, nil, 0, 0)
 client , err := winrm.NewClient(endpoint, "Administrator", "secret")
 if err != nil {
 	panic(err)
@@ -193,7 +193,7 @@ For using HTTPS authentication with x 509 cert without checking the CA
 		return &winrm.ClientAuthRequest{}
 	}
 
-	endpoint := winrm.NewEndpoint(host, 5986, false, false, clientCert, clientKey, nil, 0)
+	endpoint := winrm.NewEndpoint(host, 5986, false, false, clientCert, clientKey, nil, 0, 0)
 	client, err := winrm.NewClient(endpoint, "Administrator", ""
 	if err != nil {
 		panic(err)

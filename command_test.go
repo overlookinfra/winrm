@@ -15,7 +15,7 @@ import (
 )
 
 func (s *WinRMSuite) TestExecuteCommand(c *C) {
-	endpoint := NewEndpoint("localhost", 5985, false, false, nil, nil, nil, 0)
+	endpoint := NewEndpoint("localhost", 5985, false, false, nil, nil, nil, 0,0)
 	client, err := NewClient(endpoint, "Administrator", "v3r1S3cre7")
 	c.Assert(err, IsNil)
 
@@ -60,7 +60,7 @@ func (s *WinRMSuite) TestExecuteCommand(c *C) {
 }
 
 func (s *WinRMSuite) TestStdinCommand(c *C) {
-	endpoint := NewEndpoint("localhost", 5985, false, false, nil, nil, nil, 0)
+	endpoint := NewEndpoint("localhost", 5985, false, false, nil, nil, nil, 0,0)
 	client, err := NewClient(endpoint, "Administrator", "v3r1S3cre7")
 	c.Assert(err, IsNil)
 
@@ -97,7 +97,7 @@ func (s *WinRMSuite) TestStdinCommand(c *C) {
 }
 
 func (s *WinRMSuite) TestCommandExitCode(c *C) {
-	endpoint := NewEndpoint("localhost", 5985, false, false, nil, nil, nil, 0)
+	endpoint := NewEndpoint("localhost", 5985, false, false, nil, nil, nil, 0,0)
 	client, err := NewClient(endpoint, "Administrator", "v3r1S3cre7")
 	c.Assert(err, IsNil)
 
@@ -130,7 +130,7 @@ func (s *WinRMSuite) TestCommandExitCode(c *C) {
 }
 
 func (s *WinRMSuite) TestCloseCommandStopsFetch(c *C) {
-	endpoint := NewEndpoint("localhost", 5985, false, false, nil, nil, nil, 0)
+	endpoint := NewEndpoint("localhost", 5985, false, false, nil, nil, nil, 0,0)
 	client, err := NewClient(endpoint, "Administrator", "v3r1S3cre7")
 	c.Assert(err, IsNil)
 
@@ -209,7 +209,7 @@ func (s *WinRMSuite) TestConnectionTimeout(c *C) {
 		c.Error(err)
 	}
 
-	endpoint := NewEndpoint(host, port, false, false, nil, nil, nil, 1*time.Second)
+	endpoint := NewEndpoint(host, port, false, false, nil, nil, nil, 1*time.Second,0)
 	client, err := NewClient(endpoint, "Administrator", "v3r1S3cre7")
 	c.Assert(err, IsNil)
 
@@ -251,7 +251,7 @@ func (s *WinRMSuite) TestOperationTimeoutSupport(c *C) {
 		c.Error(err)
 	}
 
-	endpoint := NewEndpoint(host, port, false, false, nil, nil, nil, 0)
+	endpoint := NewEndpoint(host, port, false, false, nil, nil, nil, 0,0)
 	client, err := NewClient(endpoint, "Administrator", "v3r1S3cre7")
 	c.Assert(err, IsNil)
 
@@ -274,7 +274,7 @@ func (s *WinRMSuite) TestOperationTimeoutSupport(c *C) {
 
 func (s *WinRMSuite) TestEOFError(c *C) {
 	count := 0
-	endpoint := NewEndpoint("localhost", 5985, false, false, nil, nil, nil, 0)
+	endpoint := NewEndpoint("localhost", 5985, false, false, nil, nil, nil, 0,0)
 	client, err := NewClient(endpoint, "Administrator", "v3r1S3cre7")
 	c.Assert(err, IsNil)
 	r := Requester{}

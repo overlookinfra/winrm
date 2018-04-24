@@ -45,7 +45,7 @@ func (s *WinRMSuite) TestHttpRequest(c *C) {
 	}))
 	c.Assert(err, IsNil)
 	defer ts.Close()
-	endpoint := NewEndpoint(host, port, false, false, nil, nil, nil, 0)
+	endpoint := NewEndpoint(host, port, false, false, nil, nil, nil, 0,0)
 	client, err := NewClient(endpoint, "test", "test")
 	c.Assert(err, IsNil)
 	shell, err := client.CreateShell()

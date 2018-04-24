@@ -13,7 +13,7 @@ func (s *WinRMSuite) TestHttpNTLMRequest(c *C) {
 	}))
 	c.Assert(err, IsNil)
 	defer ts.Close()
-	endpoint := NewEndpoint(host, port, false, false, nil, nil, nil, 0)
+	endpoint := NewEndpoint(host, port, false, false, nil, nil, nil, 0,0)
 
 	params := DefaultParameters
 	params.TransportDecorator = func() Transporter { return &ClientNTLM{} }
