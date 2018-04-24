@@ -44,7 +44,7 @@ func (r Requester) Transport(endpoint *Endpoint) error {
 }
 
 func (s *WinRMSuite) TestNewClient(c *C) {
-	endpoint := NewEndpoint("localhost", 5985, false, false, nil, nil, nil, 0)
+	endpoint := NewEndpoint("localhost", 5985, false, false, nil, nil, nil, 0,0)
 	client, err := NewClient(endpoint, "Administrator", "v3r1S3cre7")
 
 	c.Assert(err, IsNil)
@@ -55,7 +55,7 @@ func (s *WinRMSuite) TestNewClient(c *C) {
 
 func (s *WinRMSuite) TestClientCreateShell(c *C) {
 
-	endpoint := NewEndpoint("localhost", 5985, false, false, nil, nil, nil, 0)
+	endpoint := NewEndpoint("localhost", 5985, false, false, nil, nil, nil, 0,0)
 	client, err := NewClient(endpoint, "Administrator", "v3r1S3cre7")
 	c.Assert(err, IsNil)
 	r := Requester{}
@@ -74,7 +74,7 @@ func (s *WinRMSuite) TestRun(c *C) {
 	c.Assert(err, IsNil)
 	defer ts.Close()
 
-	endpoint := NewEndpoint(host, port, false, false, nil, nil, nil, 0)
+	endpoint := NewEndpoint(host, port, false, false, nil, nil, nil, 0,0)
 	client, err := NewClient(endpoint, "Administrator", "v3r1S3cre7")
 	c.Assert(err, IsNil)
 
@@ -90,7 +90,7 @@ func (s *WinRMSuite) TestRunWithString(c *C) {
 	ts, host, port, err := runWinRMFakeServer(c, "this is the input")
 	c.Assert(err, IsNil)
 	defer ts.Close()
-	endpoint := NewEndpoint(host, port, false, false, nil, nil, nil, 0)
+	endpoint := NewEndpoint(host, port, false, false, nil, nil, nil, 0,0)
 	client, err := NewClient(endpoint, "Administrator", "v3r1S3cre7")
 	c.Assert(err, IsNil)
 
@@ -106,7 +106,7 @@ func (s *WinRMSuite) TestRunWithInput(c *C) {
 	c.Assert(err, IsNil)
 	defer ts.Close()
 
-	endpoint := NewEndpoint(host, port, false, false, nil, nil, nil, 0)
+	endpoint := NewEndpoint(host, port, false, false, nil, nil, nil, 0,0)
 	client, err := NewClient(endpoint, "Administrator", "v3r1S3cre7")
 	c.Assert(err, IsNil)
 
@@ -210,7 +210,7 @@ func (s *WinRMSuite) TestReplaceTransportWithDecorator(c *C) {
 		return &ClientAuthRequest{}
 	}
 
-	endpoint := NewEndpoint("localhost", 5986, false, false, nil, []byte(cert), []byte(key), 0)
+	endpoint := NewEndpoint("localhost", 5986, false, false, nil, []byte(cert), []byte(key), 0, 0)
 	client, err := NewClientWithParameters(endpoint, "Administrator", "password", params)
 	c.Assert(err, IsNil)
 	_, ok := client.http.(*ClientAuthRequest)

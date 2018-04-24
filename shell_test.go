@@ -6,7 +6,7 @@ import (
 )
 
 func (s *WinRMSuite) TestShellExecuteResponse(c *C) {
-	endpoint := NewEndpoint("localhost", 5985, false, false, nil, nil, nil, 0)
+	endpoint := NewEndpoint("localhost", 5985, false, false, nil, nil, nil, 0,0)
 	client, err := NewClient(endpoint, "Administrator", "v3r1S3cre7")
 	c.Assert(err, IsNil)
 
@@ -29,7 +29,7 @@ func (s *WinRMSuite) TestShellExecuteResponse(c *C) {
 }
 
 func (s *WinRMSuite) TestShellCloseResponse(c *C) {
-	endpoint := NewEndpoint("localhost", 5985, false, false, nil, nil, nil, 0)
+	endpoint := NewEndpoint("localhost", 5985, false, false, nil, nil, nil, 0,0)
 	client, err := NewClient(endpoint, "Administrator", "v3r1S3cre7")
 	c.Assert(err, IsNil)
 
